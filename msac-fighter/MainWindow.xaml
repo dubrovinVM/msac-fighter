@@ -4,9 +4,70 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:msac_fighter"
+        xmlns:helpers="clr-namespace:msac_fighter.helpers"
+        xmlns:enums="clr-namespace:msac_fighter.enums"
+        xmlns:repositories="clr-namespace:msac_fighter.Repositories"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Cекундант" Height="450" Width="800" 
+        WindowState="Maximized" >
+    <Window.Resources>
+        <ObjectDataProvider x:Key="AgesProvider" ObjectType="{x:Type repositories:AgeRepository}" MethodName="GetAges" />
+        <ObjectDataProvider x:Key="WeighProvider" ObjectType="{x:Type repositories:WeighRepository}" MethodName="GetWeigh" />
+
+        <Style x:Key="Yellow">
+            <Setter Property="Control.FontFamily" Value="Verdana" />
+            <Setter Property="Control.Background" Value="Yellow" />
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.Margin" Value="10" />
+        </Style>
+
+        <Style x:Key="Text14">
+            <Setter Property="Control.FontSize" Value="14" />
+            <Setter Property="Control.BorderBrush" Value="#FF013DF2" />
+            <Setter Property="Control.Margin" Value="20 0 10 0" />
+        </Style>
+        <Style x:Key="HeightControl">
+            <Setter Property="Control.Height" Value="25" />
+            <Setter Property="Control.VerticalAlignment" Value="Top" />
+        </Style>
+
+
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,0" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" Style="{StaticResource Yellow}"></RowDefinition>
+            <RowDefinition Height="Auto" Style="{StaticResource Yellow}"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Background="Yellow" />
+        <Border Grid.Row="1" Grid.Column="0" Background="Yellow" />
+        <Border Grid.Row="2" Grid.Column="0" Background="Chartreuse" />
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,15,0,15">
+            <TextBox Style="{StaticResource Text14}" TextAlignment="Center" HorizontalAlignment="Center" Width="800"  Text="Назва змагань" TextWrapping="Wrap" VerticalAlignment="Top" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" >
+            <RadioButton  Name="Men"     GroupName="Languages" Content="Чоловіки" IsChecked="True" Click="RadioButtonMen_Clicked" Margin="0 5 0 0" />
+            <RadioButton  Name="Women"   GroupName="Languages" Content="Жінки"    IsChecked="False" Click="RadioButtonMen_Clicked" Margin="5 5 0 0" />
+            <ComboBox     Name="AgeList" Style="{StaticResource HeightControl}" Margin="30 0 0 0" DisplayMemberPath="Age" SelectedValuePath="Id" SelectedValue = "1" ItemsSource="{Binding Source={StaticResource AgesProvider}}"     MaxWidth="100" />
+            <Button Name="ButtonFrom" Width="30" Style="{StaticResource HeightControl}"  Margin="30 0 0 0"  Content="від" Click="Button_Click" />
+            <Button Name="ButtonTo" Width="30" Style="{StaticResource HeightControl}" Margin="3 0 0 0" Content="до" Click="Button_Click"/>
+            <ComboBox     Name="WeighList" Style="{StaticResource HeightControl}" Margin="30 0 0 0" DisplayMemberPath="WeighCategory" SelectedValuePath="Id" SelectedValue = "1" ItemsSource="{Binding Source={StaticResource WeighProvider}}" MaxWidth="100" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="2"  >
+            <TextBlock Name="LblTime" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Margin="0 0 0 0"/>
+        </StackPanel>
 
     </Grid>
+
 </Window>
