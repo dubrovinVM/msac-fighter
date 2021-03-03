@@ -26,6 +26,7 @@ namespace msac_fighter
         public int timer_minutes;
         public int timer_seconds;
         public int timer_miliseconds;
+        private const string zero = "00";
 
         public MainWindow()
         {
@@ -50,6 +51,9 @@ namespace msac_fighter
 
         private void resetbtn_Click(object sender, RoutedEventArgs e)
         {
+            LblTimeMin.Text = zero;
+            LblTimeSec.Text = zero;
+            LblTimeMiliSec.Text = zero;
         }
 
         void Timer_Tick(object sender, EventArgs e)
