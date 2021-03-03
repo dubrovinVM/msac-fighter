@@ -26,11 +26,19 @@
             <Setter Property="Control.BorderBrush" Value="#FF013DF2" />
             <Setter Property="Control.Margin" Value="20 0 10 0" />
         </Style>
+
         <Style x:Key="HeightControl">
             <Setter Property="Control.Height" Value="25" />
             <Setter Property="Control.VerticalAlignment" Value="Top" />
         </Style>
 
+        <Style x:Key="TimerStyle">
+            <Setter Property="Control.FontFamily" Value="Verdana" />
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.FontSize" Value="14" />
+            <Setter Property="Control.HorizontalAlignment" Value="Center" />
+            <Setter Property="Control.Background" Value="Chartreuse" />
+        </Style>
 
     </Window.Resources>
 
@@ -65,9 +73,18 @@
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="2"  >
-            <TextBlock Name="LblTime" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Margin="0 0 0 0"/>
+            <TextBox  Style="{StaticResource TimerStyle}" x:Name="LblTimeMin" Margin="0 10 0 0"/>
+            <Label    Style="{StaticResource TimerStyle}" x:Name="LblTimeDoublePoints" Content=":" FontSize="12"  Margin="0 10 0 0"/>
+            <TextBox  Style="{StaticResource TimerStyle}" x:Name="LblTimeSec"   Margin="0 10 0 0"/>
+            <Label    Style="{StaticResource TimerStyle}" x:Name="LblTimeDoublePoints2" Content=":" Margin="0 10 0 0"/>
+            <TextBox  Style="{StaticResource TimerStyle}" x:Name="LblTimeMiliSec"  Margin="0 10 0 0"/>
         </StackPanel>
 
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="6"  >
+            <Button  Style="{StaticResource HeightControl}" Name="startbtn" Content="Cтарт"   Click="startbtn_Click"/>
+            <Button  Style="{StaticResource HeightControl}" Name="stopbtn"  Content="Пауза" Margin="10 0 0 0" Click="stopbtn_Click"/>
+            <Button  Style="{StaticResource HeightControl}" Name="resetbtn" Content="Скинути"  Margin="10 0 0 0" Click="resetbtn_Click"/>
+        </StackPanel>
     </Grid>
 
 </Window>
